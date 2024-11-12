@@ -1,0 +1,15 @@
+@model ActorVM
+
+<div class="card align-middle" style="width: 18rem;" >
+  <img src="@Model.ImgUrl" class="card-img-top" alt="...">
+  <div class="card-body align-middle">
+    <h5 class="card-title align-middle">@Model.Name</h5>
+    <p class="card-text">@Model.Bio</p>
+    @foreach (var item in Model.movies){
+      <p class="card-text">Movie : 
+        <a asp-action="Details" asp-controller="Movie" asp-route-id="@item.Id">@item.Name</a>
+        </p>
+    }
+    <a asp-action="Index" asp-controller="Actor">Back To List</a>
+  </div>
+</div>

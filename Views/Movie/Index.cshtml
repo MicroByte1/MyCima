@@ -1,0 +1,63 @@
+@model List<MovieVM>
+
+
+<form asp-action="Index">
+    <div class="text-center">
+        <label>Movie Name</label>
+        <input type="text" name="movieName">
+        <input type="submit" value="Search">
+    </div>
+
+</form>
+
+<div class="row">
+    
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-2 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 400px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImgUrl" width="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Producer: </b>
+                                <a asp-controller="Producer" asp-action="Details" asp-route-id="@item.ProducerId">@item.Producer.Name</a>
+                            </p>
+                            <p class="card-text"><b>Category: </b>
+                                <a asp-action="CategoryFilter" asp-route-id="@((int)item.Category)">@item.Category</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (User.IsInRole("Admin")){
+    <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+        <a asp-controller="Movie" asp-action="New" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New
+        </a>
+    </div>
+}

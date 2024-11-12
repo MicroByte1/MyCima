@@ -1,0 +1,6 @@
+/.editorconfig
+/appsettings.Development.json
+/bin
+/Migrations
+/obj
+/Properties

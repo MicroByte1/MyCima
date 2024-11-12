@@ -1,0 +1,97 @@
+@model MovieVM
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Create a new movie</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="New">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <img src="" alt="" id="imgview">
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label asp-for="@Model.ImgUrl" ></label>
+                                <input asp-for="@Model.ImgUrl" class="form-cotrol" onchange="fun1(this)">
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label asp-for="@Model.WatchUrl" ></label>
+                                <input asp-for="@Model.WatchUrl" class="form-cotrol" >
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label asp-for="@Model.Name" ></label>
+                                <input asp-for="@Model.Name" class="form-cotrol" >
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Duration" ></label>
+                                <input asp-for="@Model.Duration" class="form-cotrol">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ProducerId" ></label>
+                                <input asp-for="@Model.ProducerId" class="form-cotrol">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Category" ></label>
+                                <select asp-for="@Model.Category" asp-items="Html.GetEnumSelectList<MovieCategory>()" class="form-cotrol"></select>
+    
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <br><br>
+                            <div class="form-group">
+                                <label asp-for="@Model.ActorIds" ></label>
+                                <select asp-for="@Model.ActorIds" 
+                                    asp-items="@(new SelectList(@ViewBag.actors, nameof(Actor.Id), nameof(Actor.Name)))" multiple>
+                                    <option>Please select one</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-4 text-center">
+                        <img width="100%" id="ImageUrlPreview" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        function fun1(txt){
+            document.getElementById("imgview").src = txt.value;
+        }
+    </script>
+}

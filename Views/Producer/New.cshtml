@@ -1,0 +1,38 @@
+@model Producer
+
+
+<form asp-action="New" asp-controller="Producer" method="post">
+
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <img src="" alt="" id="imgview">
+    </div>
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label asp-for="@Model.ImgUrl" ></label>
+        <input asp-for="@Model.ImgUrl" class="form-cotrol" onchange="fun1(this)">
+    </div>
+
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label asp-for="@Model.Name" ></label>
+        <input asp-for="@Model.Name" class="form-cotrol">
+    </div>
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label asp-for="@Model.Bio" ></label>
+        <input asp-for="@Model.Bio" class="form-cotrol">
+    </div>
+
+    <input type="submit" value="Create" class="btn btn-primary"/>
+
+
+</form>
+
+@section Scripts{
+    <script>
+        function fun1(txt){
+            document.getElementById("imgview").src = txt.value;
+        }
+    </script>
+}

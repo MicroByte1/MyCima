@@ -1,0 +1,16 @@
+@model Producer
+
+<div class="card" style="width: 18rem;">
+  <img src="@Model.ImgUrl" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    <p class="card-text">@Model.Bio</p>
+    @foreach (var item in Model.Movies){
+      <p class="card-text">Movie : 
+        <a asp-action="Details" asp-controller="Movie" asp-route-id="@item.Id">@item.Name</a>
+
+      </p>
+    }
+    <a asp-action="Index" asp-controller="Producer">Back To List</a>
+  </div>
+</div>

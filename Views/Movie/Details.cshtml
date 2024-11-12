@@ -1,0 +1,34 @@
+@model MovieVM
+
+
+<style>
+  @@media only screen and (min-width: 768px) {
+  iframe{
+    height: 25em;
+  }
+  .card{
+    width: 100%;
+  }
+}
+</style>
+
+<div class="card">
+  
+  <iframe id="iframe-player" width="100%" height="500" scrolling="no" frameborder="0" src="https://vidsrc.net/embed/movie/tt8661580/" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+  
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    <p class="card-text">Duration : @Model.Duration</p>
+    <p class="card-text">Description : @Model.Description</p>
+    <p class="card-text">Category : @Model.Category</p>
+    <p class="card-text">Producer : @Model.Producer.Name</p>
+    <h3>Actors...</h3>
+    @foreach (var item in Model.Actors){
+    <p>Actor Name: 
+        <a asp-action="Details" asp-controller="Actor" asp-route-id="@item.Id">@item.Name</a>
+
+    </p>
+}
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

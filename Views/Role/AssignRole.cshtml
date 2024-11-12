@@ -1,0 +1,20 @@
+@model UserRolesVM
+
+
+<form asp-action="AssignRole" asp-controller="Role" method="post">
+
+    <h2>Assign User To Role</h2>
+    
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label>User</label>
+        <select asp-items="@Model.Users" asp-for="@Model.UserName"></select>
+    </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label>Role</label>
+        <select asp-items="@Model.Roles" asp-for="@Model.Role"></select>
+    </div>
+
+    <input type="submit" value="Save Role" class="btn btn-primary"/>
+
+
+</form>
